@@ -413,14 +413,14 @@ local xPlayer = nil
 xPlayertarget = ESX.GetPlayerFromId(target)
 xPlayer = ESX.GetPlayerFromId(_source)
 
-MySQL.Async.fetchAll(
-		'INSERT INTO owned_vehicles (owner, vehicle) VALUES (@owner, @vehicle)',
+MySQL.Async.execute(
+		'UPDATE owned_vehicles SET owner = @owner WHERE plate = @plate',
 		{
-		['@owner']   = xPlayer.identifier,
-		['@vehicle'] = json.encode(vehicleProps)
+		['@owner']   = xPlayertarget.identifier,
+		['@plate'] = plate
 		},
 		function(result)
-			print("insert into terminé")
+			--TriggerClientEvent('esx:showNotification', xPlayer.source, plate)
 	end)
 end)
 
