@@ -50,6 +50,7 @@ ESX.UI.Menu.Open(
 					local coords    = GetEntityCoords(playerPed, true)
  					local vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 7.0, 0, 71)
  					local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
+					local plate = vehicleProps.plate
 
        				 if data3.current.value == 'donnerkey' then
        					 ESX.UI.Menu.CloseAll()
@@ -57,7 +58,7 @@ ESX.UI.Menu.Open(
        					  TriggerServerEvent('esx_vehiclelock:donnerkey', GetPlayerServerId(player), data2.current.value)
        					  TriggerServerEvent('esx_vehiclelock:deletekey', data2.current.value)
        					  print("avant changement owner")
-       					  TriggerServerEvent('esx_vehiclelock:changeowner', GetPlayerServerId(player), vehicleProps)
+       					  TriggerServerEvent('esx_vehiclelock:changeowner', GetPlayerServerId(player), plate)
        					  print("après changement owner")
        					end
       				 end
